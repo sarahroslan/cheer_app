@@ -8,10 +8,12 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       # Save the user id inside the browser cookie. This is how we keep the user 
       # logged in when they navigate around our website.
-      session[:user_id] = user.id
-       redirect_to root_path, :notice => "Welcome back, #{user.email}"
+      sign_in user
+      #if sign in successful, send user to profile page
+       redirect_to user_path(user.id)
     else
-      redirect_to new_session_path, :notice => "Couldn't find you." 
+      redirect_to '/sign_in' 
+      flash[:notice] = "Couldn't find you. Please try again." 
     # If user's login doesn't work, send them back to the login form.
       
     end
