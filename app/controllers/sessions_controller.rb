@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  
   def new
   end
 
@@ -8,8 +9,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       # Save the user id inside the browser cookie. This is how we keep the user 
       # logged in when they navigate around our website.
-      sign_in user
       #if sign in successful, send user to profile page
+       session[:user_id] = user.id
        redirect_to user_path(user.id)
     else
       redirect_to '/sign_in' 
