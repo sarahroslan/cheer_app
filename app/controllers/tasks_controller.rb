@@ -34,7 +34,7 @@ class TasksController < ApplicationController
 	end
 
 	def index
-		@incomplete_tasks = Task.where(complete: false)
+			@incomplete_tasks = Task.where(complete: false)
     	@complete_tasks = Task.where(complete: true)
     	@tasks = Task.all
 	end
