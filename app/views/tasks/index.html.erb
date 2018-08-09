@@ -2,7 +2,7 @@
 
 <div>
 <ul>
-<% @tasks.each do |task| %>
+<% current_user.tasks.each do |task| %>
 <li><%= task.title %> - <%= task.description %></li>
 
 
@@ -12,5 +12,6 @@
 
 <%= link_to "Create another task", new_task_path(@user) %> <br />
 <% end %>
+
 </ul>
 </div>
