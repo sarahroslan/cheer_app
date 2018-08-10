@@ -27,8 +27,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
-# Figaro
+gem 'mini_magick', '~> 4.8'
+# For key security
 gem 'figaro'
 #OmniAuth
 gem 'omniauth'
@@ -46,6 +46,14 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 
 gem 'sprockets-rails'
+
+#For images upload
+gem 'carrierwave'
+
+#For image storage
+gem 'fog-aws'
+gem 'aws-sdk-rails'
+gem 'carrierwave-aws'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

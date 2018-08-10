@@ -9,6 +9,19 @@
   Email: <%= f.text_field :email %> <br />
   Password: <%= f.password_field :password %> <br />
   Password Confirmation: <%= f.password_field :password_confirmation %> <br />
-  <%= f.submit "Submit" %>
+  
+
+<div class=”field”>
+ <% if @user.avatar? %>
+ <div class=”thumbnail”>
+ <%= image_tag @user.avatar.url %>
+ </div>
+ <% end %><br>
+ <%= f.label :avatar %><br>
+ <%= f.file_field :avatar %>
+ <%= f.hidden_field :avatar_cache %>
+ </div>
+ 
+ <%= f.submit "Submit" %>
 
 <% end %>

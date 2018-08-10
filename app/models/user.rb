@@ -1,9 +1,13 @@
 class User < ApplicationRecord
+  
 	has_secure_password
 	has_many :tasks
 	has_many :authentications, dependent: :destroy
 	# Verify that email field is not blank and that it doesn't already exist in the db (prevents duplicates):
 	validates :email, presence: true, uniqueness: true
+  #Image upload
+  mount_uploader :avatar, AvatarUploader
+
 
 	def self.create_with_auth_and_hash(authentication, auth_hash)
   user = self.create!(
