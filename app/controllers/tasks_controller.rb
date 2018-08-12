@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+		before_action :set_task, except: [:index, :show]
 
 	def new
 		@task = Task.new
@@ -9,9 +10,9 @@ class TasksController < ApplicationController
 
 		if @task.save
 			flash[:notice] = "Task saved"
-			redirect_to tasks_path
+			redirect_to dashboard_path
 		else
-			redirect_to new_task_path
+			redirect_to dashboard_path
 		end
 	end
 
@@ -34,9 +35,9 @@ class TasksController < ApplicationController
 	end
 
 	def index
-			@incomplete_tasks = Task.where(complete: false)
-    	@complete_tasks = Task.where(complete: true)
-    	@tasks = Task.all
+		@incomplete_tasks = Task.where(status: false)
+    @complete_tasks = Task.where(status: true)
+    @tasks = Task.search(params[:term])
 	end
 
 	def destroy
@@ -46,7 +47,13 @@ class TasksController < ApplicationController
 
 	private
 
+	def set_task
+		@task = Task.search(params[:term])
+	end
+
   def task_params
-    params.require(:task).permit(:title, :description, :status)
+    params.require(:task).permit(:title, :description, :status, :term)
   end
+
+  
 end
