@@ -5,7 +5,7 @@
 
 		<div class="row"> <!--Create task starts here -->
     	<div class="col-md-4">
-      	<div class="card mt-3 mx-3 p-1 d-flex align-items-stretch">
+      	<div class="card mt-3 p-1 d-flex align-items-stretch">
 				  <div class="card-body">
 
 				   <h5 class="card-title text-dark">Create a Task</h5></a>
@@ -23,25 +23,8 @@
 				  </div>
 				  </div>
 				  </div> <!-- Create task ends here -->
-				  <div class="row">
-    <div class="col-md-4">
-      <div class="card mt-3 mx-3 p-1 d-flex align-items-stretch">
-				
-				  <div class="card-body">
-
-				    <a href="/events/education"><h5 class="card-title text-dark">Pending Tasks</h5></a>
-				  <ol>
-					<% current_user.tasks.order(updated_at: :desc).limit(5).each do |task| %>
-					<li><%= task.title %> <%= task.description%></li>
-					<%= link_to "Done", dashboard_path, method: :delete, id: "task", remote: true %>
-					<p><%= link_to "Back to tasks", tasks_path %></p>
-					<%end %>
-				   </ol>
-
-				  </div>
-				  </div>
-				  </div>
-				  </div>
+				  <div>
+				  	<%= render "pending_tasks" %>
 				  </div>
 				 <!-- Pending tasks ends here -->
 
@@ -52,6 +35,7 @@
 				  <div class="card-body">
 
 				    <a href="/events/education"><h5 class="card-title text-dark">Search Tasks</h5></a>
+
 				     
 <!-- Filter search bar -->
    <%= form_tag(tasks_path, method: :get) do %>
