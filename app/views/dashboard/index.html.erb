@@ -1,0 +1,101 @@
+<body>
+<div class="container-fluid" >
+	<div style="padding-left: 2%; padding-right: 3%">
+		<h2 style="margin-top: 2%; margin-bottom: 2%">Dashboard</h2>
+
+		<div class="row"> <!--Create task starts here -->
+    	<div class="col-md-4">
+      	<div class="card mt-3 mx-3 p-1 d-flex align-items-stretch">
+				  <div class="card-body">
+
+				   <h5 class="card-title text-dark">Create a Task</h5></a>
+
+					<%= form_for Task.new, remote: true do |form| %>
+					<%= render partial: '/tasks/form', object: form, url: dashboard_path, id: 'incomplete-task' %>
+					<div class="submit-button">
+      				<%= form.submit %>
+					</div>
+					<p><%= link_to "Back to tasks", tasks_path %></p>
+					<%end %>
+				   
+
+				  </div>
+				  </div>
+				  </div>
+				  </div> <!-- Create task ends here -->
+				  <div class="row">
+    <div class="col-md-4">
+      <div class="card mt-3 mx-3 p-1 d-flex align-items-stretch">
+				
+				  <div class="card-body">
+
+				    <a href="/events/education"><h5 class="card-title text-dark">Pending Tasks</h5></a>
+				  <ol>
+					<% current_user.tasks.order(updated_at: :desc).limit(5).each do |task| %>
+					<li><%= task.title %> <%= task.description%></li>
+					<%= link_to "Done", dashboard_path, method: :delete, id: "task", remote: true %>
+					<p><%= link_to "Back to tasks", tasks_path %></p>
+					<%end %>
+				   </ol>
+
+				  </div>
+				  </div>
+				  </div>
+				  </div>
+				  </div>
+				 <!-- Pending tasks ends here -->
+
+		<div class="row">
+    <div class="col-md-4">
+      <div class="card mt-3 mx-3 p-1 d-flex align-items-stretch">
+				
+				  <div class="card-body">
+
+				    <a href="/events/education"><h5 class="card-title text-dark">Search Tasks</h5></a>
+				     
+<!-- Filter search bar -->
+   <%= form_tag(tasks_path, method: :get) do %>
+  	<%= text_field_tag :term, params[:term] %>
+  	<%= submit_tag 'Search', name: nil %>
+	<% end %>
+
+<!-- Search bar ends -->
+   
+
+				  </div>
+				  </div>
+				  </div>
+				  </div><!-- Pending tasks ends here -->
+				  </div>
+
+
+				<script type="text/javascript">
+
+					$(document).ready(
+						
+				    		(function(){
+				    			
+				    			$('#submit-button').click(
+				    				(function(){
+				    					console.log('hi');
+				                $('#incomplete-task').append('ol');
+				            }));
+
+				    		}));
+
+
+				        /*$('.submit-button').click(
+				        	
+				            (function(){
+				                var toAdd = $('task').val();
+				                 $('ol').append('<li>' + toAdd + '</li>');
+				            });
+				       
+				       
+				      });*/
+				      
+				
+				</script>
+					
+				
+</body>

@@ -7,22 +7,22 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
     # If the user exists AND the password entered is correct.
     if user && user.authenticate(params[:password])
-      # Save the user id inside the browser cookie. This is how we keep the user 
-      # logged in when they navigate around our website.
-      #if sign in successful, send user to profile page
+      # Save the user id inside the browser cookie. 
+      # This is how we keep the user signed in when they navigate around our website.
+      #if sign in successful, send user to dashboard
        session[:user_id] = user.id
-       redirect_to user_path(user.id)
+       redirect_to dashboard_path(user.id)
     else
-      redirect_to '/sign_in' 
+      redirect_to sign_in_path
       flash[:notice] = "Couldn't find you. Please try again." 
-    # If user's login doesn't work, send them back to the login form.
+    # If user's sign in doesn't work, send them back to the sign in form.
       
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to '/sign_in'
+    redirect_to sign_in_path
   end
 
   def create_from_omniauth
@@ -44,7 +44,5 @@ class SessionsController < ApplicationController
         @next = edit_user_path(user)
         @notice = "User created. Please confirm or edit details"
       end
-
-    
   end
 end
