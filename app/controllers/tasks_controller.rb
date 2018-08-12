@@ -9,7 +9,6 @@ class TasksController < ApplicationController
 		@task = current_user.tasks.new(task_params)
 
 		if @task.save
-			flash[:notice] = "Task saved"
 			redirect_to dashboard_path
 		else
 			redirect_to dashboard_path
@@ -38,11 +37,17 @@ class TasksController < ApplicationController
 		@incomplete_tasks = Task.where(status: false)
     @complete_tasks = Task.where(status: true)
     @tasks = Task.search(params[:term])
+    	
 	end
 
 	def destroy
 		@task = Task.destroy(params[:id])
-		redirect_to @task
+		@pending_tasks = current_user.tasks.order(updated_at: :desc).limit(5) 
+		#redirect_to @task
+		respond_to do |f|
+    	f.html { redirect_to dashboard_path }
+    	f.js
+  	end
 	end
 
 	private
