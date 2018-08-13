@@ -3,8 +3,12 @@
 	  <h1 class="display-4">Welcome to Do Things!</h1>
 	  <p class="lead">A way to keep track of the things you do.</p>
 	  <hr class="my-4">
+    <% if current_user %>
+      <h2> Welcome back! </h2>
+    <% else %>
 	    <a href="/sign_up" class="btn btn-dark mb-2 sr-icons">Sign Up</a>
 	    <a href="/sign_in" class="btn btn-dark mb-2 sr-icons">Sign In</a>
+    <% end %>
 	  </p>
 	</div>
 </div>
