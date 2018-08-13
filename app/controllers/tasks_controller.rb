@@ -8,11 +8,10 @@ class TasksController < ApplicationController
 	def create
 		@task = current_user.tasks.new(task_params)
 
-		if @task.save
-			redirect_to dashboard_path
-		else
-			redirect_to dashboard_path
-		end
+		respond_to do |f|
+    f.html { redirect_to dashboard_path }
+    f.js
+  	end
 	end
 
 	def edit
@@ -22,7 +21,8 @@ class TasksController < ApplicationController
 	def update
 		@task = Task.find(params[:id])
     	if @task.update(task_params)
-      	redirect_to @task
+      	redirect_to task_path 
+    		
     	else
       	render 'edit'
     	end
@@ -37,7 +37,7 @@ class TasksController < ApplicationController
 		@incomplete_tasks = Task.where(status: false)
     @complete_tasks = Task.where(status: true)
     @tasks = Task.search(params[:term])
-    	
+
 	end
 
 	def destroy

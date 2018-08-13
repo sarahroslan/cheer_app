@@ -13,10 +13,10 @@
 <!-- Search bar ends -->
 
 <div class="row">
-    <% @tasks.all.each do |task| %>
+    <% current_user.tasks.all.each do |task| %>
     <div class="col-md-4">
       <div class="card mt-3 mx-3 p-1 d-flex align-items-stretch">
-       0
+       
         <div class="cardtask">
           <h5 class="card-title"><%= task.title %></h5>
             <p class="card-text"><%= task.description %></p>
@@ -24,12 +24,14 @@
             <% if task.user_id == current_user.id %>
             <%= link_to "Edit", edit_task_path(task), class:"btn btn-dark" %>
             <%= link_to 'Delete', task_path(task), method: :delete, class:"btn btn-dark" %>
-            <%= link_to "Create", new_task_path(task), class:"btn btn-dark" %>  <br />
            <%end%>
         </div>
       </div>
     </div>
     <%end%>
+  </div>
+  <div>
+    <h4 style="margin-top: 2%; margin-bottom: 2% text-align:center"><%= link_to "Create another task", dashboard_path %>  <br /></h4>
   </div>
 
 

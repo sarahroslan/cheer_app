@@ -1,4 +1,22 @@
+<div class="col-md-6 mx-auto mt-5" id="pending_tasks">
+  <div class="card mt-3 mx-3 p-1 d-flex align-items-center">
+		<div class="card-body">
+			<h1 class="card-title text-dark text-center">User Profile</h1></a>
+				<% if current_user.avatar? %>
+          <%= image_tag current_user.avatar.url %>
+        <% end %>
+        <br />
+        <br />
+					<h1><%= @user.name %></h1> <br />
+					<h1><%= @user.id %></h1> <br />
+					<h3>Number of tasks pending : <%= @user.tasks.count %><br />
+					<%= link_to "View all tasks", tasks_path %><br />
+					<%= link_to "Edit Profile", edit_user_path %><br />
+					<%= link_to "Create a task", dashboard_path %><br />
+		</div>
+	</div>
+</div>
+	
 
-<h1><%= @user.name %></h1>
 
-<%= link_to "Create a task", new_task_path %>
+

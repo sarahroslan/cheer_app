@@ -1,85 +1,42 @@
 <body>
 <div class="container-fluid" >
 	<div style="padding-left: 2%; padding-right: 3%">
-		<h2 style="margin-top: 2%; margin-bottom: 2%">Dashboard</h2>
-
-		<div class="row"> <!--Create task starts here -->
-    	<div class="col-md-4">
-      	<div class="card mt-3 p-1 d-flex align-items-stretch">
-				  <div class="card-body">
-
-				   <h5 class="card-title text-dark">Create a Task</h5></a>
-
-					<%= form_for Task.new, remote: true do |form| %>
-					<%= render partial: '/tasks/form', object: form, url: dashboard_path, id: 'incomplete-task' %>
-					<div class="submit-button">
-      				<%= form.submit %>
-					</div>
-					<p><%= link_to "Back to tasks", tasks_path %></p>
-					<%end %>
-				   
-
+		<h2 style="margin-top: 2%; margin-bottom: 2% text-align:center">Dashboard</h2>
+			<div class="row"> <!--row starts here -->
+    		<div class="col-sm-3 col-md-4"> <!--Create task starts here -->
+      		<div class="card mt-3 p-1 d-flex align-items-stretch">
+				  	<div class="card-body">
+							<h4 class="card-title text-dark">Create a Task</h4></a>
+								<%= form_for Task.new, remote: true do |form| %>
+								<%= render partial: '/tasks/form', object: form, url: dashboard_path, id: 'pending_tasks' %>
+								<div class="submit-button">
+				      			<%= form.submit %>
+								</div>
+								<%end %>
+						</div>
 				  </div>
-				  </div>
-				  </div>
-				  </div> <!-- Create task ends here -->
-				  <div>
-				  	<%= render "pending_tasks" %>
-				  </div>
-				 <!-- Pending tasks ends here -->
-
-		<div class="row">
-    <div class="col-md-4">
-      <div class="card mt-3 mx-3 p-1 d-flex align-items-stretch">
-				
-				  <div class="card-body">
-
-				    <a href="/events/education"><h5 class="card-title text-dark">Search Tasks</h5></a>
-
-				     
-<!-- Filter search bar -->
-   <%= form_tag(tasks_path, method: :get) do %>
-  	<%= text_field_tag :term, params[:term] %>
-  	<%= submit_tag 'Search', name: nil %>
-	<% end %>
-
-<!-- Search bar ends -->
-   
-
-				  </div>
-				  </div>
-				  </div>
-				  </div><!-- Pending tasks ends here -->
-				  </div>
-
-
-				<script type="text/javascript">
-
-					$(document).ready(
-						
-				    		(function(){
-				    			
-				    			$('#submit-button').click(
-				    				(function(){
-				    					console.log('hi');
-				                $('#incomplete-task').append('ol');
-				            }));
-
-				    		}));
-
-
-				        /*$('.submit-button').click(
-				        	
-				            (function(){
-				                var toAdd = $('task').val();
-				                 $('ol').append('<li>' + toAdd + '</li>');
-				            });
-				       
-				       
-				      });*/
-				      
-				
-				</script>
-					
-				
+				</div>
+		 <!-- Create task ends here -->
+	 <!-- Pending tasks starts here -->
+		<%= render "pending_tasks" %>
+	 <!-- Pending tasks ends here -->
+	 <!--Search starts here -->
+   	<div class="col-sm-3 col-md-4">
+     	<div class="card mt-3 mx-3 p-1 d-flex align-items-stretch">
+				<div class="card-body">
+						<h4 class="card-title text-dark">Search Tasks</h4>
+						<!-- Filter search bar -->
+							<%= form_tag(tasks_path, method: :get) do %>
+  						<%= text_field_tag :term, params[:term] %>
+  						<%= submit_tag 'Search', name: nil %>
+							<% end %>
+							<!-- Search bar ends -->
+							<br />
+							<%= link_to "View all tasks", tasks_path %>
+				</div>
+			</div>
+		</div>
+	</div> <!--row ends here -->
+</div>
+</div> 			
 </body>

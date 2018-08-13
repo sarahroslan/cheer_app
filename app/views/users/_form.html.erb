@@ -1,0 +1,26 @@
+<%= form_for :user, url: '/users' do |f| %>
+
+  Name: <br />
+  <%= f.text_field :name %> <br />
+  Email: <br />
+  <%= f.text_field :email %> <br />
+  Password: <br />
+  <%= f.password_field :password %> <br />
+  Password Confirmation: <br />
+  <%= f.password_field :password_confirmation %> <br />
+  
+
+<div class=”field”>
+ <% if @user.avatar? %>
+ <div class=”thumbnail”>
+ <%= image_tag @user.avatar.url %>
+ </div>
+ <% end %><br>
+ <%= f.label :avatar %><br>
+ <%= f.file_field :avatar %>
+ <%= f.hidden_field :avatar_cache %>
+ </div>
+ 
+ <%= f.submit "Submit" %>
+
+<% end %>

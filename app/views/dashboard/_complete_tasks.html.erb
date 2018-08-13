@@ -1,0 +1,16 @@
+<div class="row"  id="completed_tasks">
+    <div class="col-md-4">
+      <div class="card mt-3 mx-3 p-1 d-flex align-items-stretch">
+				  <div class="card-body">
+				    <h5 class="card-title text-dark">Completed Tasks</h5>
+						  <ol>
+							<% @complete_tasks.each do |task| %>
+								<li><%= task.title %> <%= task.description%></li>
+								<%= link_to "(remove)", task, method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
+								<p><%= link_to "Back to tasks", tasks_path %></p>
+							<%end %>
+						  </ol>
+				  </div>
+			</div>
+		</div>
+	</div>
