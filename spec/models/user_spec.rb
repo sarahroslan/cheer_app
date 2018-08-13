@@ -35,6 +35,8 @@ RSpec.describe User, type: :model do
     expect(x.macro).to eq(:has_many)
   end
 
+  #Custom model method test
+
   it "should return authencaticated user" do
   	user = User.create(name: "Harry", email: "harry@email.com", password: "12345678", password_confirmation: "12345678")
   	authencatication = Authentication.create(provider: 'google_oauth2', token: "random-token", user_id: user.id)

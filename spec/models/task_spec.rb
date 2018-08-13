@@ -9,11 +9,15 @@ RSpec.describe Task, type: :model do
   	expect(task).to_not be_valid
   end
 
+  #Tests on associations
+
   it "should belong to a user" do
 
   	t = Task.reflect_on_association(:user)
     expect(t.macro).to eq(:belongs_to)
 	end
+
+  #Custom model method test
 
 	it "should be done" do
 
