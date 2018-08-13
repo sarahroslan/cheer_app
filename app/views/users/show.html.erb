@@ -7,11 +7,8 @@
         <% end %>
         <br />
         <br />
-			<h1><%= @user.name %></h1> <br />
-			<h1><%= @user.id %></h1> <br />
-			<h3>Number of incomplete tasks : <%= @user.tasks.count %><br />
-			<%= link_to "View all incomplete tasks", tasks_path %><br />
-			<%= link_to "Create a task", dashboard_path %><br />
+			<h3><%= @user.name %></h3> <br />
+      <h3><%= @user.email %></h3> <br />
 		</div>
 	</div>
 </div>
