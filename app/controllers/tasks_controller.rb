@@ -34,7 +34,7 @@ class TasksController < ApplicationController
 
 	def index
 		if params[:term]
-    	@tasks = Task.search(params[:term])
+    	@tasks = current_user.tasks.search(params[:term])
     else
     	@tasks = Task.all
     end

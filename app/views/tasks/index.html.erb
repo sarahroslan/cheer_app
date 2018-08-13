@@ -13,10 +13,9 @@
 <!-- Search bar ends -->
 
 <div class="row">
-    <% current_user.tasks.where(status: false).each do |task| %>
+    <% @tasks.where(status: false).each do |task| %>
     <div class="col-md-4">
       <div class="card mt-3 mx-3 p-1 d-flex align-items-stretch">
-       
         <div class="cardtask">
           <h5 class="card-title"><%= task.title %></h5>
             <p class="card-text"><%= task.description %></p>
