@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-		before_action :set_task, except: [:index, :show]
+		before_action :set_task, except: [:index, :show, :update_status]
 
 	def new
 		@task = Task.new
@@ -50,6 +50,12 @@ class TasksController < ApplicationController
   	end
 	end
 
+	def update_status
+		task = Task.find(params[:id])
+		task.done
+		redirect_to dashboard_path
+	end
+
 	private
 
 	def set_task
@@ -57,7 +63,7 @@ class TasksController < ApplicationController
 	end
 
   def task_params
-    params.require(:task).permit(:title, :description, :status, :term)
+    params.require(:task).permit(:title, :description, :status, :term, )
   end
 
   

@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
  get "/dashboard" => "dashboard#index", as: "dashboard"
 
+ patch "/tasks/update_status/:id" => "tasks#update_status", as: "update_status"
+
  
  
 end

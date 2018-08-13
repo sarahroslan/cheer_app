@@ -17,5 +17,10 @@ class Task < ApplicationRecord
 
 	def self.complete
   	where(complete: true).order('id DESC')
-	end  	
+	end  
+	
+	def done
+		update_attribute(:status, true)
+	end	
+
 end
