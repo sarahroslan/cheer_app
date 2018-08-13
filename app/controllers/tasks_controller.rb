@@ -8,10 +8,9 @@ class TasksController < ApplicationController
 	def create
 		@task = current_user.tasks.new(task_params)
 		if @task.save
-		respond_to do |f|
-    f.html { redirect_to dashboard_path }
-    f.js
-  	end
+			redirect_to dashboard_path
+		else 
+    	redirect_to dashboard_path
   	end
 	end
 
@@ -35,10 +34,11 @@ class TasksController < ApplicationController
 	end
 
 	def index
-		@incomplete_tasks = Task.where(status: false)
-    @complete_tasks = Task.where(status: true)
-    @tasks = Task.search(params[:term])
-
+		if params[:term]
+    	@tasks = Task.search(params[:term])
+    else
+    	@tasks = Task.all
+    end
 	end
 
 	def destroy
