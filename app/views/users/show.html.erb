@@ -7,11 +7,11 @@
         <% end %>
         <br />
         <br />
-					<h1><%= @user.name %></h1> <br />
-					<h1><%= @user.id %></h1> <br />
-					<h3>Number of tasks pending : <%= @user.tasks.count %><br />
-					<%= link_to "View all tasks", tasks_path %><br />
-					<%= link_to "Create a task", dashboard_path %><br />
+			<h1><%= @user.name %></h1> <br />
+			<h1><%= @user.id %></h1> <br />
+			<h3>Number of tasks pending : <%= @user.tasks.count %><br />
+			<%= link_to "View all tasks", tasks_path %><br />
+			<%= link_to "Create a task", dashboard_path %><br />
 		</div>
 	</div>
 </div>

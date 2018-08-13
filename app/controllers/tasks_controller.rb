@@ -26,7 +26,6 @@ class TasksController < ApplicationController
     	else
       	render 'edit'
     	end
-  	
 	end
 
 	def show
