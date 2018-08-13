@@ -7,10 +7,11 @@ class TasksController < ApplicationController
 
 	def create
 		@task = current_user.tasks.new(task_params)
-
+		if @task.save
 		respond_to do |f|
     f.html { redirect_to dashboard_path }
     f.js
+  	end
   	end
 	end
 
