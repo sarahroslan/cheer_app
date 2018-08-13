@@ -13,7 +13,7 @@
 <!-- Search bar ends -->
 
 <div class="row">
-    <% @tasks.each do |task| %>
+    <% current_user.tasks.where(status: false).each do |task| %>
     <div class="col-md-4">
       <div class="card mt-3 mx-3 p-1 d-flex align-items-stretch">
        
@@ -34,5 +34,11 @@
     <h4 style="margin-top: 2%; margin-bottom: 2% text-align:center"><%= link_to "Create another task", dashboard_path %>  <br /></h4>
   </div>
 
+
+<h2>Here is a list of the task you have completed :</h2>
+      <% current_user.tasks.where(status: true).each do |task| %>
+     <li> <%= task.title %>
+      <%= task.description %> </li>
+      <% end %>
 
 

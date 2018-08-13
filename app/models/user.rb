@@ -5,6 +5,7 @@ class User < ApplicationRecord
 	has_many :authentications, dependent: :destroy
 	# Verify that email field is not blank and that it doesn't already exist in the db (prevents duplicates):
 	validates :email, presence: true, uniqueness: true
+  validates :password, presence: true
   #Image upload
   mount_uploader :avatar, AvatarUploader
 
@@ -26,6 +27,4 @@ class User < ApplicationRecord
    return x.token unless x.nil?
  end
 
-
-	
 end
