@@ -16,6 +16,5 @@ Rails.application.routes.draw do
 
  get "/dashboard" => "dashboard#index", as: "dashboard"
 
- put "complete_task", to: "tasks#complete", as: :complete_tasks  
  
 end

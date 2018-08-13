@@ -8,7 +8,7 @@
 				  	<div class="card-body">
 							<h4 class="card-title text-dark">Create a Task</h4></a>
 								<%= form_for Task.new, remote: true do |form| %>
-								<%= render partial: '/tasks/form', object: form, url: dashboard_path, id: 'pending_tasks' %>
+								<%= render partial: '/tasks/form', object: form, url: dashboard_path %>
 								<div class="submit-button">
 				      			<%= form.submit %>
 								</div>
@@ -18,7 +18,7 @@
 				</div>
 		 <!-- Create task ends here -->
 	 <!-- Pending tasks starts here -->
-		<%= render "pending_tasks" %>
+	 	<%= render 'dashboard/pending_tasks' %>
 	 <!-- Pending tasks ends here -->
 	 <!--Search starts here -->
    	<div class="col-sm-3 col-md-4">
