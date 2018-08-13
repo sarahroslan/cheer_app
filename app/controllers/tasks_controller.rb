@@ -42,7 +42,7 @@ class TasksController < ApplicationController
 
 	def destroy
 		@task = Task.destroy(params[:id])
-		@pending_tasks = current_user.tasks.order(updated_at: :desc).limit(5) 
+		@incomplete_tasks  = current_user.tasks.where(status: false).order(updated_at: :desc).limit(5)
 		#redirect_to @task
 		respond_to do |f|
     	f.html { redirect_to dashboard_path }
